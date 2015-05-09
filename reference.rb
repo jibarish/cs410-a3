@@ -11,7 +11,7 @@ class Reference
 
     @hash = Hash.new
     for ch in characters
-      hash[ch.codepoint] = ch
+      @hash[ch.codepoint] = ch
     end
 
     # @trie = Trie.new(characters)
