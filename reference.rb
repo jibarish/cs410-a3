@@ -1,20 +1,20 @@
 require_relative 'characters'
-# require_relative 'trie'
+require_relative 'trie'
 
 class Reference
-  attr_reader :hash #, :trie
+  attr_reader :hash, :trie
 
   def initialize
     # Master storage object
     # - referenced by internal data structures (hash, trie)
     characters = Characters.new
-
+    
     @hash = Hash.new
+    @trie = Trie.new
     for ch in characters
       @hash[ch.codepoint] = ch
+      @trie[ch.name] = ch.codepoint
     end
-
-    # @trie = Trie.new(characters)
   end
 
   def name(codepoint)
@@ -28,6 +28,8 @@ class Reference
   def character(name)
     # -> Codepoint
     # Map a string representing a name, or an alias, to a codepoint.
+
+    @trie[name]
   end
 
   def majorCategory(codepoint)
