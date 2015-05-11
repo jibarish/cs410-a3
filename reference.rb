@@ -1,16 +1,16 @@
-require_relative 'characters'
-require_relative 'trie'
-require_relative 'unicode_data'
 require 'singleton'
+require_relative 'unicode_data'
+require_relative 'trie'
+require_relative 'characters'
 
 class Reference
-  #include Singleton
+  include Singleton
   attr_reader :hash, :trie
 
   def initialize(data_source=UnicodeData.instance)
     # Master storage object
     # - referenced by internal data structures (hash, trie)
-    
+
     @hash = data_source.hash
     @trie = data_source.trie
   end
