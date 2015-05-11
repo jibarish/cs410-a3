@@ -7,7 +7,7 @@ class Reference
   #include Singleton
   attr_reader :hash, :trie
 
-  def initialize(data_source=Characters.instance)
+  def initialize(data_source=UnicodeData.instance)
     # Master storage object
     # - referenced by internal data structures (hash, trie)
     
