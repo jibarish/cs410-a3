@@ -36,4 +36,10 @@ class ReferenceTestWithInlinedData < Test::Unit::TestCase
   	null = @reference.category("0000")
   	assert(null == "Cc")
   end
+
+  def test_name_lookup_correction_alias
+    name = @reference.name("01A2")
+    assert(name == "LATIN CAPITAL LETTER GHA")
+  end
+
 end
