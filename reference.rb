@@ -1,20 +1,18 @@
 require_relative 'characters'
 require_relative 'trie'
+require_relative 'unicode_data'
+require 'singleton'
 
 class Reference
+  #include Singleton
   attr_reader :hash, :trie
 
-  def initialize
+  def initialize(data_source=Characters.instance)
     # Master storage object
     # - referenced by internal data structures (hash, trie)
-    characters = Characters.new
     
-    @hash = Hash.new
-    @trie = Trie.new
-    for ch in characters
-      @hash[ch.codepoint] = ch
-      @trie[ch.name] = ch.codepoint
-    end
+    @hash = data_source.hash
+    @trie = data_source.trie
   end
 
   def name(codepoint)
