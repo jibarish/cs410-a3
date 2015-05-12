@@ -1,8 +1,7 @@
 require 'singleton'
 require_relative 'unicode_data'
-require_relative 'trie'
 
-class Reference
+class Unicode
   include Singleton
   attr_reader :codepoint_to_data, :name_to_codepoint, :alias_to_name
 
@@ -45,6 +44,9 @@ class Reference
 
     checkExistence(@codepoint_to_data[codepoint], codepoint).minor_category
   end
+
+
+  private
 
   def checkExistence(character, request)
     if character == nil

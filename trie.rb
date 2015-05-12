@@ -1,4 +1,5 @@
 class Trie
+
   def initialize
     @root = nil
   end
@@ -24,6 +25,9 @@ class Trie
     node ? node.last : nil
   end
   alias_method :[], :get
+
+
+  private
 
   class Node
     attr_accessor :left, :right, :middle, :parent, :char, :value, :end

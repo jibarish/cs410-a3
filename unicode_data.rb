@@ -1,9 +1,11 @@
 require 'singleton'
-require_relative 'trie'
 require_relative 'character'
+require_relative 'trie'
+
 class UnicodeData
   include Singleton
   attr_reader :cp_hash, :trie, :alias_hash
+
   def initialize
     @cp_hash = Hash.new
     @trie = Trie.new
