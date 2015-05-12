@@ -7,9 +7,6 @@ class Reference
   attr_reader :codepoint_to_data, :name_to_data, :alias_to_name
 
   def initialize(data_source=UnicodeData.instance)
-    # Master storage object
-    # - referenced by internal data structures (codepoint_to_data, name_to_data)
-
     @codepoint_to_data = data_source.cp_hash
     @name_to_data = data_source.trie
     @alias_to_name = data_source.alias_hash

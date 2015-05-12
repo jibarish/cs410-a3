@@ -61,5 +61,4 @@ class ReferenceTestWithInlinedData < Test::Unit::TestCase
     cp = @reference.character("SINGLE GRAPHIC CHARACTER INTRODUCER")
     assert(cp == "0099")
   end
-
 end
