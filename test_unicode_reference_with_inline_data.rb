@@ -61,4 +61,35 @@ class ReferenceTestWithInlinedData < Test::Unit::TestCase
     cp = @reference.character("SINGLE GRAPHIC CHARACTER INTRODUCER")
     assert(cp == "0099")
   end
+
+  def test_codepoint_lookup_control_char_no_alias
+    assert_raise(Reference::AmbiguousName) do
+      cp = @reference.character("<control>")
+    end
+  end
+
+  def test_codepoint_lookup_bad_char
+    assert_raise(Reference::NoSuchCharacter) do
+      cp = @reference.character("Gobbledygook")
+    end
+  end
+
+  def test_name_lookup_bad_char
+    assert_raise(Reference::NoSuchCharacter) do
+      cp = @reference.name("Gobbledygook")
+    end
+  end
+
+  def test_major_category_lookup_bad_char
+    assert_raise(Reference::NoSuchCharacter) do
+      cp = @reference.majorCategory("Gobbledygook")
+    end
+  end
+
+  def test_category_lookup_bad_char
+    assert_raise(Reference::NoSuchCharacter) do
+      cp = @reference.category("Gobbledygook")
+    end
+  end
+
 end
