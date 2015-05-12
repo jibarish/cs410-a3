@@ -12,10 +12,14 @@ class ReferenceTestWithInlinedData < Test::Unit::TestCase
 
   # Called after every test method runs. Can be used to tear
   # down fixture information.
-
   def teardown
     # Do nothing
   end
+
+
+  #
+  # Basic functionality
+  #
 
   def test_codepoint_lookup
     null = @reference.character("NULL")
@@ -36,6 +40,11 @@ class ReferenceTestWithInlinedData < Test::Unit::TestCase
     null = @reference.category("0000")
     assert(null == "Cc")
   end
+
+
+  #
+  # Aliases
+  #
 
   def test_name_lookup_correction_alias
     name = @reference.name("01A2")
@@ -61,6 +70,11 @@ class ReferenceTestWithInlinedData < Test::Unit::TestCase
     cp = @reference.character("SINGLE GRAPHIC CHARACTER INTRODUCER")
     assert(cp == "0099")
   end
+
+
+  #
+  # Bad values
+  #
 
   def test_codepoint_lookup_control_char_no_alias
     assert_raise(Reference::AmbiguousName) do
@@ -91,5 +105,4 @@ class ReferenceTestWithInlinedData < Test::Unit::TestCase
       cp = @reference.category("Gobbledygook")
     end
   end
-
 end
