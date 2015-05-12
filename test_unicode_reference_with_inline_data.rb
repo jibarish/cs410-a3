@@ -42,9 +42,24 @@ class ReferenceTestWithInlinedData < Test::Unit::TestCase
     assert(name == "LATIN CAPITAL LETTER GHA")
   end
 
+  def test_codepoint_lookup_abbreviation_alias
+    cp = @reference.character("NUL")
+    assert(cp == "0000")
+  end
+
+  def test_codepoint_lookup_alternate_alias
+    cp = @reference.character("BYTE ORDER MARK")
+    assert(cp == "FEFF")
+  end
+
   def test_codepoint_lookup_correction_alias
     cp = @reference.character("LATIN CAPITAL LETTER GHA")
     assert(cp == "01A2")
+  end
+
+  def test_codepoint_lookup_figment_alias
+    cp = @reference.character("SINGLE GRAPHIC CHARACTER INTRODUCER")
+    assert(cp == "0099")
   end
 
 end

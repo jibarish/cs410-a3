@@ -1,8 +1,6 @@
 require 'singleton'
 require_relative 'unicode_data'
 require_relative 'trie'
-require_relative 'characters'
-require_relative 'alias_lookup_table'
 
 class Reference
   include Singleton
@@ -12,9 +10,9 @@ class Reference
     # Master storage object
     # - referenced by internal data structures (codepoint_to_data, name_to_data)
 
-    @codepoint_to_data = data_source.hash
+    @codepoint_to_data = data_source.cp_hash
     @name_to_data = data_source.trie
-    @alias_to_name = AliasLookupTable.instance
+    @alias_to_name = data_source.alias_hash
   end
 
   def name(codepoint)
@@ -29,7 +27,8 @@ class Reference
     # -> Codepoint
     # Map a string representing a name, or an alias, to a codepoint.
 
-    @name_to_data[@alias_to_name.check_alias(name)]
+    official_name = @alias_to_name[name] || name
+    @name_to_data[official_name]
   end
 
   def majorCategory(codepoint)
