@@ -3,7 +3,7 @@ require_relative 'character'
 
 def parse_file
   # Read in data
-  data = File.open("UnicodeDataClean.txt", "r"){ |f| f.read.split("\n") }
+  data = File.open("unicode_data_clean.txt", "r"){ |f| f.read.split("\n") }
 
   output = File.open("unicode_data.rb", 'w')
 
@@ -13,12 +13,14 @@ def parse_file
   alias_hash_format = "    alias_hash[\"%s\"] = \"%s\""
 
   output.puts "require 'singleton'"
-  output.puts "require_relative 'trie'"
   output.puts "require_relative 'character'"
+  output.puts "require_relative 'trie'"
+  output.puts ""
 
   output.puts "class UnicodeData"
   output.puts "  include Singleton"
   output.puts "  attr_reader :cp_hash, :trie, :alias_hash"
+  output.puts ""
   output.puts "  def initialize"
   output.puts "    @cp_hash = Hash.new"
   output.puts "    @trie = Trie.new"
